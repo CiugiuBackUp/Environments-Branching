@@ -8,6 +8,7 @@ describe("User Routes", () => {
       const newUser = {
         name: "John Doe",
         email: "john.doe@example.com",
+        email: `john.doe${Math.floor(Math.random() * 10000)}@example.com`,
         password: "password123",
       };
 
