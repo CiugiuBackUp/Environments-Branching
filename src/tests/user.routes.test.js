@@ -3,6 +3,7 @@ import app from "../../server.js";
 import { expect } from "chai";
 
 describe("User Routes", () => {
+  const userId = 1;
   describe("POST /api/users", () => {
     it("should create a new user successfully", async () => {
       const newUser = {
@@ -50,7 +51,6 @@ describe("User Routes", () => {
 
   describe("GET /api/users/:id", () => {
     it("should retrieve a user by ID", async () => {
-      const userId = 1;
       const response = await request(app)
         .get(`/api/users/${userId}`)
         .expect(200);
@@ -67,7 +67,6 @@ describe("User Routes", () => {
 
   describe("PUT /api/users/:id", () => {
     it("should update a user successfully", async () => {
-      const userId = 1;
       const updatedUser = {
         name: "Jane Doe",
         email: "jane.doe@example.com",
@@ -83,7 +82,6 @@ describe("User Routes", () => {
     });
 
     it("should return an error for invalid input", async () => {
-      const userId = 1;
       const invalidUser = {
         name: "",
         email: "invalid-email",
@@ -110,7 +108,7 @@ describe("User Routes", () => {
       const response = await request(app).post("/api/users").send(newUser);
 
       const userId = response.body.id;
-      console.log("User ID to delete:", userId);
+      // console.log("User ID to delete:", userId);
 
       const deleteResponse = await request(app)
         .delete(`/api/users/${userId}`)
